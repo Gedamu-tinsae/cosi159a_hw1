@@ -143,6 +143,7 @@ def main():
     train_losses, val_accuracies = [], []
     patience = args.early_stop
     best_epoch = 0
+    patience_counter = 0
     try:
         for epoch in range(start_epoch, args.epochs):
             model.train()
@@ -235,44 +236,6 @@ def main():
     plt.legend()
     plt.savefig(os.path.join(args.output_dir, 'val_accuracy_curve.png'))
     plt.close()
-
-        # --- 5. VALIDATION PHASE ---
-        model.eval()
-        val_correct, val_total = 0, 0
-        with torch.no_grad():
-            for inputs, targets in valloader:
-                inputs, targets = inputs.to(device), targets.to(device)
-                outputs = model(inputs)
-                _, predicted = outputs.max(1)
-                val_total += targets.size(0)
-                val_correct += predicted.eq(targets).sum().item()
-
-
-        val_acc = 100. * val_correct / val_total
-        avg_train_loss = train_loss / len(trainloader)
-        # Log to TensorBoard
-        writer.add_scalar('Loss/train', avg_train_loss, epoch)
-        writer.add_scalar('Accuracy/val', val_acc, epoch)
-
-        print(f'Epoch {epoch+1}/{args.epochs} | Train Acc: {100.*correct/total:.2f}% | Val Acc: {val_acc:.2f}%')
-
-        # Save Checkpoint
-        torch.save({
-            'epoch': epoch + 1,
-            'model_state_dict': model.state_dict(),
-            'optimizer_state_dict': optimizer.state_dict(),
-            'best_val_acc': best_val_acc,
-        }, checkpoint_path)
-
-        # Save Best Weights
-        if val_acc > best_val_acc:
-            print(f"*** New Best Validation Accuracy: {val_acc:.2f}%. Saving model... ***")
-            torch.save(model.state_dict(), 'models/model.pt')
-            best_val_acc = val_acc
-
-        scheduler.step()
-
-    writer.close()
 
     # --- 6. FINAL TEST EVALUATION ---
     if os.path.isfile(best_model_path):
