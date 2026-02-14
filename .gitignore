@@ -1,0 +1,7 @@
+data/
+models/
+notes/
+__pycache__/
+.DS_Store
+*.pt
+*.pth
