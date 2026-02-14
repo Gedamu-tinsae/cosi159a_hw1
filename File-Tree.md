@@ -1,20 +1,37 @@
 # File Tree: cosi159a_hw1
 
-**Generated:** 2/14/2026, 4:07:15 AM
+**Generated:** 2/14/2026, 6:33:59 AM
 **Root Path:** `/root/cosi159a_hw1`
 
 ```
 ├── 📁 data
+│   ├── 📁 cifar-10-batches-py
+│   │   ├── 📄 batches.meta
+│   │   ├── 📄 data_batch_1
+│   │   ├── 📄 data_batch_2
+│   │   ├── 📄 data_batch_3
+│   │   ├── 📄 data_batch_4
+│   │   ├── 📄 data_batch_5
+│   │   ├── 🌐 readme.html
+│   │   └── 📄 test_batch
+│   └── 📦 cifar-10-python.tar.gz
 ├── 📁 models
 ├── 📁 notebooks
 ├── 📁 notes
+│   ├── 📝 Assignment_1.md
+│   ├── 📕 Assignment_1.pdf
+│   ├── 📝 Connecting SSH Instance to Github.md
 │   ├── 📝 INTERNAL_GUIDE.md
-│   └── 📝 Q&A.md
+│   ├── 📝 breakdown of file structure.md
+│   └── 📝 requirements.md
 ├── 📁 scripts
+│   ├── 🐍 analyze_results.py
+│   ├── 🐍 plot_results.py
 │   └── 🐍 setup_data.py
 ├── ⚙️ .gitignore
 ├── 📝 File-Tree.md
 ├── 📝 README.md
+├── 🐍 plot_results.py
 ├── 📄 requirements.txt
 └── 🐍 train.py
 ```

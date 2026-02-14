@@ -1,7 +1,22 @@
+# Data and Models
 data/
 models/
-notes/
-__pycache__/
-.DS_Store
 *.pt
 *.pth
+
+# Python environment and cache
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# OS and IDE files
+.DS_Store
+.vscode/
+.ipynb_checkpoints/
+
+# Logs
+runs/
+
+#personal notes
+notes/

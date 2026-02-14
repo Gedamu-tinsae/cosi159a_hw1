@@ -2,3 +2,7 @@ torch
 torchvision
 matplotlib
 numpy
+tqdm
+tensorboard
+scipy
+pillow

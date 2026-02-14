@@ -8,6 +8,10 @@ import argparse
 import os
 import sys
 
+# Additional imports from provided script
+from torch.utils.tensorboard import SummaryWriter
+from tqdm import tqdm
+
 def get_args():
     parser = argparse.ArgumentParser(description='COSI 159A CIFAR-10 Training')
     parser.add_argument('--epochs', default=30, type=int)
@@ -93,11 +97,14 @@ def main():
     # --- 4. TRAINING LOOP ---
     print(f"==> Starting training from Epoch {start_epoch + 1}...")
     
+
+    writer = SummaryWriter(f'runs/cifar10_lr{args.lr}_bs{args.batch_size}')
     for epoch in range(start_epoch, args.epochs):
         model.train()
         train_loss, correct, total = 0, 0, 0
-        
-        for batch_idx, (inputs, targets) in enumerate(trainloader):
+
+        loop = tqdm(enumerate(trainloader), total=len(trainloader), leave=False, desc=f"Epoch [{epoch+1}/{args.epochs}]")
+        for batch_idx, (inputs, targets) in loop:
             inputs, targets = inputs.to(device), targets.to(device)
             optimizer.zero_grad()
             outputs = model(inputs)
@@ -109,6 +116,7 @@ def main():
             _, predicted = outputs.max(1)
             total += targets.size(0)
             correct += predicted.eq(targets).sum().item()
+            loop.set_postfix(loss=train_loss/(batch_idx+1), acc=100.*correct/total)
 
         # --- 5. VALIDATION PHASE ---
         model.eval()
@@ -121,7 +129,13 @@ def main():
                 val_total += targets.size(0)
                 val_correct += predicted.eq(targets).sum().item()
 
+
         val_acc = 100. * val_correct / val_total
+        avg_train_loss = train_loss / len(trainloader)
+        # Log to TensorBoard
+        writer.add_scalar('Loss/train', avg_train_loss, epoch)
+        writer.add_scalar('Accuracy/val', val_acc, epoch)
+
         print(f'Epoch {epoch+1}/{args.epochs} | Train Acc: {100.*correct/total:.2f}% | Val Acc: {val_acc:.2f}%')
 
         # Save Checkpoint
@@ -139,6 +153,8 @@ def main():
             best_val_acc = val_acc
 
         scheduler.step()
+
+    writer.close()
 
     # --- 6. FINAL TEST EVALUATION ---
     if os.path.isfile('models/model.pt'):
