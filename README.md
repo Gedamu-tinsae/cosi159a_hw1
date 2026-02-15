@@ -52,6 +52,16 @@ python3 scripts/setup_data.py
 python3 train.py --epochs 30 --lr 0.1 --batch_size 128
 ```
 
+### 6. Test Only: Evaluate a Saved Model
+To evaluate the best model on the test set without training, use:
+```bash
+python3 train.py --resume_best --test_only
+```
+Or to evaluate the last checkpoint:
+```bash
+python3 train.py --resume --test_only
+```
+
 ---
 
 ## Alternative: Using venv (for simple projects)
@@ -65,7 +75,7 @@ pip install -r requirements.txt
 
 ## 🏗️ Scripts & Usage
 
-- **train.py**: Main training/validation/testing script. Supports resuming from checkpoints with `--resume`.
+- **train.py**: Main training/validation/testing script. Supports resuming from checkpoints with `--resume` and test-only evaluation with `--test_only`.
 - **scripts/setup_data.py**: Downloads and prepares the CIFAR-10 dataset.
 - **scripts/plot_results.py**: Example script for plotting training/validation accuracy curves (customize as needed).
 - **scripts/analyze_results.py**: Example script for analyzing predictions and computing confidence intervals.
