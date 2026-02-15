@@ -1,6 +1,6 @@
 # File Tree: cosi159a_hw1
 
-**Generated:** 2/14/2026, 6:33:59 AM
+**Generated:** 2/14/2026, 3:58:40 PM
 **Root Path:** `/root/cosi159a_hw1`
 
 ```
@@ -16,14 +16,38 @@
 │   │   └── 📄 test_batch
 │   └── 📦 cifar-10-python.tar.gz
 ├── 📁 models
+│   ├── 📄 checkpoint.pt
+│   ├── 📄 model.pt
+│   ├── 🖼️ train_loss_curve.png
+│   └── 🖼️ val_accuracy_curve.png
 ├── 📁 notebooks
+│   ├── 📁 data
+│   │   ├── 📁 cifar-10-batches-py
+│   │   │   ├── 📄 batches.meta
+│   │   │   ├── 📄 data_batch_1
+│   │   │   ├── 📄 data_batch_2
+│   │   │   ├── 📄 data_batch_3
+│   │   │   ├── 📄 data_batch_4
+│   │   │   ├── 📄 data_batch_5
+│   │   │   ├── 🌐 readme.html
+│   │   │   └── 📄 test_batch
+│   │   └── 📦 cifar-10-python.tar.gz
+│   └── 📄 visualize_data.ipynb
 ├── 📁 notes
+│   ├── 📁 logs
+│   │   └── 📝 1st.md
 │   ├── 📝 Assignment_1.md
 │   ├── 📕 Assignment_1.pdf
 │   ├── 📝 Connecting SSH Instance to Github.md
 │   ├── 📝 INTERNAL_GUIDE.md
 │   ├── 📝 breakdown of file structure.md
-│   └── 📝 requirements.md
+│   ├── 📝 requirements.md
+│   ├── 📝 train cmd explanation.md
+│   ├── 📝 train_script_reference.md
+│   └── 📝 using_notebooks_over_ssh.md
+├── 📁 runs
+│   └── 📁 cifar10_lr0.1_bs128
+│       └── 📄 events.out.tfevents.1771055392.brandeis-hongfuliu-Assignment-1-instance.13273.0
 ├── 📁 scripts
 │   ├── 🐍 analyze_results.py
 │   ├── 🐍 plot_results.py
@@ -31,7 +55,6 @@
 ├── ⚙️ .gitignore
 ├── 📝 File-Tree.md
 ├── 📝 README.md
-├── 🐍 plot_results.py
 ├── 📄 requirements.txt
 └── 🐍 train.py
 ```
